@@ -84,4 +84,31 @@
 
             document.getElementById("days").innerText = days;
             document.getElementById("hours").innerText = hours;
-       
+            document.getElementById("minutes").innerText = minutes;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerText = "Countdown Ended";
+            }
+        }
+
+        function createConfetti() {
+            const confettiCount = 200;
+            const confettiContainer = document.getElementById('countdown');
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Initialize countdown and confetti
+        updateCountdown();
+        createConfetti();
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

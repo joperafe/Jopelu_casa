@@ -5,22 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
         body, html {
             height: 100%;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #282c34;
-            color: #ffffff;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            overflow: hidden;
         }
+
         #countdown {
             text-align: center;
-            font-size: 3em;
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
+
         .time {
-            margin: 0 10px;
+            margin: 0 15px;
+            display: inline-block;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: confetti-fall linear;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -45,16 +84,4 @@
 
             document.getElementById("days").innerText = days;
             document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                document.getElementById("countdown").innerText = "Countdown Ended";
-            }
-        }
-
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 1000);
-    </script>
-</body>
-</html>
+       

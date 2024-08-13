@@ -32,13 +32,8 @@
     </div>
 
     <script>
-        function calculateFutureDate(months) {
-            const now = new Date();
-            now.setMonth(now.getMonth() + months);
-            return now;
-        }
-
-        const targetDate = calculateFutureDate(4);
+        // Set the target date to December 12, 2024
+        const targetDate = new Date('2024-12-12T00:00:00');
 
         function updateCountdown() {
             const now = new Date().getTime();

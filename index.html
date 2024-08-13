@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #282c34;
+            color: #ffffff;
+        }
+        #countdown {
+            text-align: center;
+            font-size: 3em;
+        }
+        .time {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">
+        <span class="time" id="days"></span> days 
+        <span class="time" id="hours"></span> hours 
+        <span class="time" id="minutes"></span> minutes
+    </div>
+
+    <script>
+        function calculateFutureDate(months) {
+            const now = new Date();
+            now.setMonth(now.getMonth() + months);
+            return now;
+        }
+
+        const targetDate = calculateFutureDate(4);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerText = "Countdown Ended";
+            }
+        }
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
